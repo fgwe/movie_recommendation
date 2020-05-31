@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>电影推荐系统</title>
+
+	<style>
+		body, ul, h1, h3, h4, p {
+	margin: 0;
+	padding: 0;
+}
+
+body {
+	font-size: 12px;
+	font-family: 'Microsoft YaHei', 'Arial';
+	background: #f5f5f5;
+	color: #555;
+}
+
+ul {
+	list-style: none;
+}
+
+a {
+	text-decoration: none;
+	color: #0000cc;
+	transition: all 0.2s;
+}
+
+a:hover {
+	color: #ff7300;
+}
+
+input, textarea {
+	border: 1px solid #ccc;
+	outline: none;
+	color: #555;
+	font-family: inherit;
+}
+
+input {
+	padding: 0;
+}
+
+textarea {
+	padding: 10px;
+}
+
+.fl {
+	float: left;
+	margin-right: 20px;
+}
+
+.pr {
+	position: relative;
+}
+
+.pa {
+	position: absolute;
+}
+
+.layoutItem{
+	padding-bottom:32767px;
+	margin-bottom:-32767px;
+}
+
+.mb10 {
+	margin-bottom: 10px;
+}
+
+.w1100 {
+	width: 1200px;
+	margin: 0 auto;
+}
+
+
+/* 文章标题开始 */
+.article-title {
+	display: block;
+	font-size: 15px;
+	font-weight: bold;
+	text-align: center;
+    line-height: 20px;
+}
+/* 文章标题结束 */
+/* 文章列表开始 */
+.list {
+	overflow: hidden;
+}
+
+.list li {
+	width: 270px;
+	height: 410px;
+	background: #FFF;
+	margin-top: 30px;
+	box-shadow: 2px 2px 3px #e1e1e1;
+}
+
+.list .thumbnail,
+.list .thumbnail img {
+	display: block;
+	width: 266px;
+    height: 356px;
+    border: 1px solid black;
+}
+
+.list .content {
+	padding: 16px 20px 0;
+}
+
+
+/* 文章列表结束 */
+
+	</style>
+</head>
+<body>
+
+	<!-- 展示用户X喜欢的电影（包括电影名和海报） -->
+	<h1 style="margin-left: 100px;margin-top: 20px;">用户{{user_id}}喜欢的电影：</h1>
+
+	<ul class="list w1100">
+
+		{% for title,genres,overview,imgurl in like_movies %}
+		<li class="fl">
+			<a href="detail?title={{title}}&genres={{genres}}&overview={{overview}}&imgurl={{imgurl}}" class="thumbnail">
+				<img src={{imgurl}}>
+			</a>
+			<div class="content">
+				<a class="article-title" href="detail?title={{title}}&genres={{genres}}&overview={{overview}}&imgurl={{imgurl}}">{{title}}</a>
+			</div>
+		</li>
+		{% endfor %}
+	</ul>
+	<!-- 结束 -->
+
+
+	<!-- 展示猜测用户X喜欢的电影（包括电影名和海报） -->
+	<h1 style="margin-left: 100px;margin-top: 20px;">猜测用户{{user_id}}喜欢的电影：</h1>
+
+	<ul class="list w1100">
+
+		{% for title,genres,overview,imgurl in recommendation_movies %}
+		<li class="fl">
+			<a href="detail?title={{title}}&genres={{genres}}&overview={{overview}}&imgurl={{imgurl}}" class="thumbnail">
+				<img src={{imgurl}}>
+			</a>
+			<div class="content">
+				<a class="article-title" href="detail?title={{title}}&genres={{genres}}&overview={{overview}}&imgurl={{imgurl}}">{{title}}</a>
+			</div>
+		</li>
+		{% endfor %}
+		
+	</ul>
+	
+	<!-- 电影列表结束 -->
+
+
+
+</body>
+</html>

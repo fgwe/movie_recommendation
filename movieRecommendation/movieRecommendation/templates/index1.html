@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>电影推荐系统</title>
+</head>
+<body>
+<!-- 后端系统运行时会提供以下变量：
+ user_id：用户的id;
+ like_movies：用户喜欢的电影列表，每个列表项是一个包含四个元素（电影名，电影海报地址，电影简介,电影类别）的元祖;
+ recommendation_movies：推荐给用户的电影列表，每个列表项是一个包含四个元素（电影名，电影海报地址，电影简介，电影类别）的元祖。
+ -->
+
+<!-- 展示用户X喜欢的电影（包括电影名和海报） -->
+<h1>用户{{user_id}}喜欢的电影：</h1>
+<ul>
+
+    {% for movie_name,movie_image_address,movie_brief,movie_genre in like_movies %}
+    <!-- 点击图片可以进入电影的详细界面（包括电影名，电影海报，电影简介，电影类别） -->
+        <li>{{movie_name}} <img src={{movie_image_address}}></li>
+    {% endfor %}
+</ul>
+
+<!-- 展示猜测用户X喜欢的电影（包括电影名和海报） -->
+<h1>猜测用户{{user_id}}喜欢的电影：</h1>
+<ul>
+    {% for movie_name,movie_image_address,movie_brief,movie_genre in recommendation_movies %}
+    <!-- 点击图片可以进入电影的详细界面（包括电影名，电影海报，电影简介，电影类别） -->
+        <li>{{movie_name}} <img src={{movie_image_address}}></li>
+    {% endfor %}
+</ul>
+
+</body>
+</html>
